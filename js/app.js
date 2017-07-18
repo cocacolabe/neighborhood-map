@@ -11,7 +11,7 @@ var initialLocation = [
     },
 
     {
-        name: 'Brooklyn Zoo NY',
+        name: 'Brooklyn Zoo',
         position: {lat: 40.711663, lng: -73.935463},
     },
 
@@ -47,11 +47,13 @@ var markers = [];
       function initMap() {
         var manhattan = {lat: 40.74135, lng: -73.99802};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: manhattan,
+          zoom: 11,
+          center: manhattan, 
         });
 
         var largeInfowindow = new google.maps.InfoWindow();
+
+
         //The following group uses the location array to create an array of markers on initialize.
 
         for(var i=0; i<initialLocation.length; i++){
@@ -67,25 +69,44 @@ var markers = [];
                 animation: google.maps.Animation.DROP,
                 id: i
             });
+            
             //push the marker to our array of markers
             markers.push(marker);
-            //create an onclick event to open an infowindow 
+            
+            //create an onclick event to open an infowindow at each marker
             marker.addListener('click', function(){
-            populateInfoWindow(this,largeInfowindow);
-        });
-        
+                populateInfoWindow(this, largeInfowindow);
+            });
+            
+            // This function populates the infowindow when the marker is clicked.
+            // (We'll only allow one infowindow open when the marker that is clicked
+            // and populate based on that markers position)
             function populateInfoWindow(marker, infowindow){
                 //check to make sure the infowindow is not already opened on this marker
                 if(infowindow.marker != marker){
                     infowindow.marker = marker;
-                    infowindow.setCountent('<div>'+ marker.name+'</div>');
-                    infowindow.open(map,marker);
+                    infowindow.setContent('<div>'+ marker.name+'</div>');
+                    infowindow.open(map, marker);
                     //make sure the marker property is cleared if the infowindow is closed
-                    infowindow.addListener('closeclock',function(){
-                        infowindow.setMarker(null);
+                    infowindow.addListener('closeclick',function(){
+                        infowindow.marker = null;
                     });
                 } 
             }
+            //The function will loop through the markers array and display them all
+            function showListings(){
+                //set bounds so the map will show all location marker
+                var bounds = new google.maps.LatLngBounds();
+                //Extend the boundaries of the map for each marker
+                for (var i=0; i<markers.length; i++){
+                    markers[i].setMap(map);
+                    bounds.extend(markers[i].position);
+                }
+                map.fitBounds(bounds);
+            }
+            //The function will loop through the listings and hide them all
+            
+
         }
 
         // var marker = new google.maps.Marker({
