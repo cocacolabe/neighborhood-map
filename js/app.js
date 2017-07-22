@@ -60,7 +60,8 @@ var ViewModel = function(){
     var infowindow = new google.maps.InfoWindow({
         //   content: contentString
         });
-
+    
+    //add todo
     this.clickListShowMarker = function(event) {
 
         infowindow.setContent('<div>'+ event.marker.name+'</div>');
