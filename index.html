@@ -7,15 +7,19 @@
   <body>
     <h3>My Google Maps Demo</h3>
     <h4>List:</h4>
+    <select data-bind="options: locationList, value:selectedLocation, optionsCaption: 'Select One...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>
     <ul data-bind="foreach: locationList">
+        
         <li data-bind="text: name, click: $parent.clickListShowMarker"></li>
     </ul>
     <div id="map"></div>
+ 
 
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPaBBG1daa-MUa1bJO2pdaO4NwlG39Gu8&callback=initMap">
     </script>  
     <script src="js/lib/knockout-3.4.2.js"></script>
     <script src="js/app.js"></script>
+
   </body>
 </html>

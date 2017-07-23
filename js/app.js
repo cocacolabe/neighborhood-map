@@ -34,14 +34,22 @@ var Location = function(data){
         map: map,
         position: data.position,
         name: data.name,
-        animation: google.maps.Animation.DROP
+        animation: google.maps.Animation.DROP,
     });
+    
 }
 
 // ViewModel: Controls interaction between Model and View
 var ViewModel = function(){
     var self = this;
     this.locationList = ko.observableArray([]);
+    //for the dropdown list
+    this.selectedLocation = ko.observable();
+
+    this.selectionChange = function() {
+        self.clickListShowMarker(self.selectedLocation());
+    }
+
     initialLocation.forEach(function(listItem){
         
         // Create new Locatioin from listItem
@@ -60,14 +68,14 @@ var ViewModel = function(){
     var infowindow = new google.maps.InfoWindow({
         //   content: contentString
         });
-    
-    //add todo
-    this.clickListShowMarker = function(event) {
 
-        infowindow.setContent('<div>'+ event.marker.name+'</div>');
-        infowindow.open(map, event.marker);
+    this.clickListShowMarker = function(location) {
+
+        infowindow.setContent('<div>'+ location.marker.name+'</div>');
+        infowindow.open(map, location.marker);
 
     }
+    
 }
 
 // Initialize and setup google map
