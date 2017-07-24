@@ -64,18 +64,50 @@ var ViewModel = function(){
         self.locationList.push(newLoc);
         
     });
+
     
     var infowindow = new google.maps.InfoWindow({
         //   content: contentString
+
         });
 
     this.clickListShowMarker = function(location) {
 
-        infowindow.setContent('<div>'+ location.marker.name+'</div>');
-        infowindow.open(map, location.marker);
+
+    // var query = location.name;
+
+    // Wikipedia api
+
+ //Wikipedia AJAX request 
+    var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + location.marker.name + '&format=json&callback=wikiCallback';
+    var contentString = '<div>'+ location.marker.name+'<br>' ;
+    console.log(contentString);
+    $.ajax({
+        url: wikiUrl,
+        dataType: "jsonp",
+        jsonp: "callback",
+        success: function(response){
+            var articleList = response[1];
+            console.log(response);
+            for (var i=0; i<articleList.length; i++){
+                articleStr = articleList[i];
+                var url = 'http://en.wikipedia.org/wiki/'+articleStr;
+                contentString += '<li><a href="'+url+'">'+articleStr+ '</a></li></div>';
+            
+            }
+            // console.log(contentString);
+            infowindow.setContent(contentString);
+            infowindow.open(map, location.marker);
+// clearTimeout(wikiRequestTimeout);
+        }
+    });
+        // infowindow.setContent(contentString);
+        // infowindow.open(map, location.marker);
 
     }
     
+
+
 }
 
 // Initialize and setup google map
