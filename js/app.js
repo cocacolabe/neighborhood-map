@@ -11,7 +11,7 @@ var initialLocation = [
     },
 
     {
-        name: 'Brooklyn Zoo',
+        name: 'Prospect Park Zoo',
         position: {lat: 40.711663, lng: -73.935463},
     },
 
@@ -36,8 +36,10 @@ var Location = function(data){
         name: data.name,
         animation: google.maps.Animation.DROP,
     });
-    
+ 
 }
+
+
 
 // ViewModel: Controls interaction between Model and View
 var ViewModel = function(){
@@ -74,35 +76,37 @@ var ViewModel = function(){
     this.clickListShowMarker = function(location) {
 
 
-    // var query = location.name;
-
     // Wikipedia api
 
  //Wikipedia AJAX request 
     var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + location.marker.name + '&format=json&callback=wikiCallback';
-    var contentString = '<div>'+ location.marker.name+'<br>' ;
+    var contentString = '<div class="display-5">'+ location.marker.name+'</div><br>' ;
     console.log(contentString);
     $.ajax({
         url: wikiUrl,
         dataType: "jsonp",
         jsonp: "callback",
         success: function(response){
-            var articleList = response[1];
-            console.log(response);
-            for (var i=0; i<articleList.length; i++){
-                articleStr = articleList[i];
-                var url = 'http://en.wikipedia.org/wiki/'+articleStr;
-                contentString += '<li><a href="'+url+'">'+articleStr+ '</a></li></div>';
+            var articleList = response[2];
             
+            console.log(response);
+            var url = response[3][0];
+            var articleStr = response[2][0];
+            if (articleStr === "") {
+                articleStr = "Read more on Wikipedia.";
             }
+            contentString += '<div><p><a href="'+url+'">'+articleStr+ '</a></p></div>';
+            // for (var i=0; i<articleList.length; i++){
+            //     articleStr = articleList[i];
+            
+            // }
             // console.log(contentString);
             infowindow.setContent(contentString);
             infowindow.open(map, location.marker);
-// clearTimeout(wikiRequestTimeout);
+            // clearTimeout(wikiRequestTimeout);
         }
     });
-        // infowindow.setContent(contentString);
-        // infowindow.open(map, location.marker);
+
 
     }
     
@@ -117,6 +121,7 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 11,
         center: manhattan, 
+        
     });
     ko.applyBindings(new ViewModel());
 }

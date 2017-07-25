@@ -3,26 +3,48 @@
   <head>
       <meta charset="UTF-8"></meta>
       <link rel="stylesheet" type="text/css" href="stylesheet/styles.css">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://use.fontawesome.com/3f132dd3ce.js"></script>
+      <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
-    <h4>List:</h4>
-    <select data-bind="options: locationList, value:selectedLocation, optionsCaption: 'Select One...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>
-    <ul data-bind="foreach: locationList">
+<!--nav bar-->
+          <div class="pos-f-t">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-inverse p-4">
+          <span class="text-muted">
+            <ul data-bind="foreach: locationList" class="col-md-6">
+
+              <h3><a href="#" class="list-group-item list-group-item-action" data-bind="text: name, click: $parent.clickListShowMarker"></a></h3>
+            </ul></span>
+        </div>
+      </div>
+      <nav class="navbar navbar-inverse bg-inverse">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+
+          <span class="navbar-toggler-icon"></span>
+        </button>
         
-        <li data-bind="text: name, click: $parent.clickListShowMarker"></li>
-    </ul>
+      </nav>
+    </div>
+
+
+    <div class="container-fluid jumbotron">
+    <h2 >Neighborhood Map</h2>
+    <h4>Select from list:</h4>
+    <select class="custom-select" data-bind="options: locationList, value:selectedLocation, optionsCaption: 'Select One...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>
+
+    
     <div id="map"></div>
  
-     
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPaBBG1daa-MUa1bJO2pdaO4NwlG39Gu8&callback=initMap">
     </script>  
-    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_dngWp0bc_gaddBis5Fk6NwIFRfWCaz8&libraries=places"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
     <script src="js/lib/knockout-3.4.2.js"></script>
     <script src="js/app.js"></script>
-
+    </div>
   </body>
 </html>
