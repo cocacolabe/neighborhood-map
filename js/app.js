@@ -60,6 +60,7 @@ var ViewModel = function(){
         // Add listener to marker
         newLoc.marker.addListener('click', function(){
             self.clickListShowMarker(newLoc);
+            newLoc.marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
         });
 
         // Push Location to locationList
@@ -80,7 +81,7 @@ var ViewModel = function(){
 
  //Wikipedia AJAX request 
     var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + location.marker.name + '&format=json&callback=wikiCallback';
-    var contentString = '<div class="display-5">'+ location.marker.name+'</div><br>' ;
+    var contentString = '<div><h3>'+ location.marker.name+'</h3></div><br>' ;
     console.log(contentString);
     $.ajax({
         url: wikiUrl,
@@ -101,10 +102,12 @@ var ViewModel = function(){
             
             // }
             // console.log(contentString);
+            
             infowindow.setContent(contentString);
             infowindow.open(map, location.marker);
             // clearTimeout(wikiRequestTimeout);
         }
+
     });
 
 
@@ -116,6 +119,7 @@ var ViewModel = function(){
 
 // Initialize and setup google map
 var map;
+var marker;
 function initMap() {
     var manhattan = {lat: 40.74135, lng: -73.99802};
     map = new google.maps.Map(document.getElementById('map'), {
