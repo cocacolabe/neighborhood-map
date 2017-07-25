@@ -36,7 +36,6 @@ var Location = function(data){
         name: data.name,
         animation: google.maps.Animation.DROP,
     });
- 
 }
 
 
@@ -127,5 +126,7 @@ function initMap() {
         center: manhattan, 
         
     });
+
+
     ko.applyBindings(new ViewModel());
 }
