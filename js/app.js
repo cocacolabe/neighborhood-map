@@ -49,6 +49,7 @@ var ViewModel = function(){
 
     this.selectionChange = function() {
         self.clickListShowMarker(self.selectedLocation());
+        
     }
 
     initialLocation.forEach(function(listItem){
@@ -81,6 +82,11 @@ var ViewModel = function(){
  //Wikipedia AJAX request 
     var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + location.marker.name + '&format=json&callback=wikiCallback';
     var contentString = '<div><h3>'+ location.marker.name+'</h3></div><br>' ;
+
+    var wikiRequestTimeout = setTimeout(function(){
+        contentString = "failed to get wikipedia resources";
+    }, 4000);
+
     console.log(contentString);
     $.ajax({
         url: wikiUrl,
@@ -96,15 +102,11 @@ var ViewModel = function(){
                 articleStr = "Read more on Wikipedia.";
             }
             contentString += '<div><p><a href="'+url+'">'+articleStr+ '</a></p></div>';
-            // for (var i=0; i<articleList.length; i++){
-            //     articleStr = articleList[i];
-            
-            // }
-            // console.log(contentString);
-            
+
             infowindow.setContent(contentString);
             infowindow.open(map, location.marker);
-            // clearTimeout(wikiRequestTimeout);
+
+            clearTimeout(wikiRequestTimeout);
         }
 
     });

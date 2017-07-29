@@ -8,36 +8,65 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   </head>
   <body>
-<!--nav bar-->
-          <div class="pos-f-t">
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-inverse p-4">
-          <span class="text-muted">
-            <ul data-bind="foreach: locationList" class="col-md-4">
 
-              <h4><a href="#" class="list-group-item list-group-item-action" data-bind="text: name, click: $parent.clickListShowMarker"></a></h4>
+<!--test for nav bar-->
+
+<div class="collapse bg-inverse" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 py-4">
+            <h4 class="text-white">About us</h4>
+          </div>
+          <div class="col-sm-6 py-4">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Follow on Twitter</a></li>
+              <li><a href="#" class="text-white">Like on Facebook</a></li>
+              <li><a href="#" class="text-white">Email me</a></li>
+              
             </ul>
-            <!--<select class="custom-select col-md-4" data-bind="options: locationList, value:selectedLocation, optionsCaption: 'Select One...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>-->
-</span>
+            
+          </div>
         </div>
-      </div>
-      <div>
-      <nav class="navbar navbar-inverse bg-inverse">        
-        <button class="navbar-toggler col-md-2" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        </nav>
       </div>
     </div>
 
+    <div class="navbar navbar-inverse bg-inverse">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand">New York Zoo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+
+<!--test for nav bar end-->
+
 
     <div class="container-fluid jumbotron">
-    <h2>Neighborhood Map</h2>
-    <select class="custom-select col-md-4" data-bind="options: locationList, value:selectedLocation, optionsCaption: 'SELECT PLACE FROM LIST...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>
+
+      <div class="row">
+          <div class="col-sm-4">
+            <select class="custom-select col-md-4" data-bind="options: locationList, value:selectedLocation, optionsCaption: 'SELECT...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>
+
+            <ul data-bind="foreach: locationList">
+             
+              <h4><a href="#" class="list-group-item list-group-item-action" data-bind="text: name, click: $parent.clickListShowMarker"></a></h4>
+            
+            
+  
+        
+    </div>
+    <!--<h2>Neighborhood Map</h2>-->
+    <!--<select class="custom-select col-md-4" data-bind="options: locationList, value:selectedLocation, optionsCaption: 'SELECT PLACE FROM LIST...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>
     <P></P>
-    
-    <div id="map"></div>
-    <div id="pano"></div>
+    -->
+    <div id="map" class=" col-sm-8 py-4"></div>
+
+            
+          </div>
+      </div>
+    <!--<div id="pano"></div>-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPaBBG1daa-MUa1bJO2pdaO4NwlG39Gu8&callback=initMap">
