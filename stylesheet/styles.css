@@ -1,8 +1,27 @@
-       #map {
-        height: 800px;
-        width: 100%;
-       }
+#map {
+    height: 800px;
+    width: 100%;
+}
 
 h2, h3 {
     text-align: center;
 }
+
+.nav{
+    max-height: 130px;
+    overflow-y:auto; 
+}
+
+#exo{
+    font-family: 'Exo 2', sans-serif;
+
+}
+
+#WalterTurncoat{
+    font-family: 'Walter Turncoat', cursive;
+}
+
+p{
+    font-size: 1.5em;
+}
+
