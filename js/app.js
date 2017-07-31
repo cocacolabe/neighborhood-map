@@ -446,7 +446,7 @@
             "fullName": "Little Rock Central High School National Historic Site",
             "url": "https://www.nps.gov/chsc/index.htm",
             "weatherInfo": "Arkansas Weather can change quickly.  While the state is in a moderate temperate zone, it does experience strong thunderstorms, tornadoes and flash floods.  In winter, \"Snow\" events tend to quickly turn to thin ice which can be difficult to see and to clear.  Summer temperatures and humidity can lead to dehydration, heat exhaustion and heat stroke.  Visitors are advised to dress in layers and be prepared for precipitation.",
-            "name": "Little Rock Central High School"
+            "name": "Little Rock Central HighSchool"
         },
         {
             "states": "MA",
@@ -764,7 +764,7 @@ var ViewModel = function(){
 
     
     var infowindow = new google.maps.InfoWindow({
-        maxWidth: 290,
+        maxWidth: 600,
         });
 
     this.clickListShowMarker = function(location) {
@@ -798,7 +798,7 @@ var ViewModel = function(){
 
             infowindow.setContent(contentString);
             infowindow.open(map, location.marker);
-
+            map.setZoom(6);
             clearTimeout(wikiRequestTimeout);
         }
 
@@ -813,7 +813,7 @@ var map;
 var marker;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 5,
+        zoom: 4,
         center: { lat:37.0902, lng:-95.4300083}, 
     });
     ko.applyBindings(new ViewModel());

@@ -1,5 +1,5 @@
 #map {
-    height: 800px;
+    height: 700px;
     width: 100%;
 }
 
@@ -8,8 +8,9 @@ h2, h3 {
 }
 
 .nav{
-    max-height: 130px;
+    max-height: 100px;
     overflow-y:auto; 
+    font-size: 1em;
 }
 
 #exo{
@@ -22,6 +23,15 @@ h2, h3 {
 }
 
 p{
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
+html { 
+    height: 100% 
+    }
+      
+body { 
+    height: 100%; 
+    margin: 0; 
+    padding: 0 
+    }
