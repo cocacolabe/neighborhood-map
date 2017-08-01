@@ -770,15 +770,50 @@ var ViewModel = function(){
     this.clickListShowMarker = function(location) {
         location.marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
 
-    // Wikipedia api
+// Flickr API
+
+//  var $body = $('body');
+       var flickrUrl="https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=5306afda3bc7ac180a127a586999464e&text="+ location.marker.name +"&per_page=10&page=1&format=json";     
+        var contentString = "";
+
+        var flickrRequestTimeout = setTimeout(function(){
+            contentString = "failed to get Flickr resources";
+    }, 10000);
+
+    $.ajax({
+        url: flickrUrl,
+        dataType:"jsonp",
+        jsonp: 'jsoncallback',
+        success:function(response)
+        {
+            var articlrList=response.photos.photo;
+                // var url = 'https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg';
+            for(var i=0;i<10;i++)
+            {
+                console.log(articlrList[i].farm);
+                var farmid = articlrList[i].farm;
+                var serverid = articlrList[i].server;
+                var photoid = articlrList[i].id;
+                var secret = articlrList[i].secret;
+                var url = 'https://farm' + farmid + '.staticflickr.com/' + serverid + '/' + photoid + '_' + secret + '.jpg';
+        }
+        // var url='https://farm'+farmid+'.staticflickr.com/'+serverid+'/'+photoid+'_'+secret+'.jpg';
+            window.url = url;
+            clearTimeout(flickrRequestTimeout);
+    }
+
+   });
+
+
 
  //Wikipedia AJAX request 
     var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + location.marker.name + '&format=json&callback=wikiCallback';
-    var contentString = '<div id="exo" class="jumbotron"><h3>'+ location.marker.name+'</h3><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
-
+    // var contentString = '<div id="exo" class="jumbotron"><h3>'+ location.marker.name+'</h3><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
+     contentString += '<div id="exo" class="jumbotron"><h3>'+ location.marker.name+'</h3><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
+     contentString += "<img src='" + window.url + "'\><br><br>";
     var wikiRequestTimeout = setTimeout(function(){
         contentString = "failed to get wikipedia resources";
-    }, 4000);
+    }, 10000);
 
     console.log(contentString);
     $.ajax({

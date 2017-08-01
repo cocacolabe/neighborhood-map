@@ -8,9 +8,10 @@ h2, h3 {
 }
 
 .nav{
-    max-height: 100px;
-    overflow-y:auto; 
+    max-height: 110px;
+    /*overflow-y:auto; */
     font-size: 1em;
+    overflow-y: scroll;
 }
 
 #exo{
