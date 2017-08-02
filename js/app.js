@@ -764,7 +764,7 @@ var ViewModel = function(){
 
     
     var infowindow = new google.maps.InfoWindow({
-        maxWidth: 600,
+        maxWidth: 400,
         });
 
     this.clickListShowMarker = function(location) {
@@ -773,7 +773,7 @@ var ViewModel = function(){
 // Flickr API
 
 //  var $body = $('body');
-       var flickrUrl="https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=5306afda3bc7ac180a127a586999464e&text="+ location.marker.name +"&per_page=10&page=1&format=json";     
+       var flickrUrl="https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=c9dc37eeb28fc5b376222e989a04c75e&text="+ location.marker.name +"&per_page=5&page=1&format=json";     
         var contentString = "";
 
         var flickrRequestTimeout = setTimeout(function(){
@@ -788,7 +788,7 @@ var ViewModel = function(){
         {
             var articlrList=response.photos.photo;
                 // var url = 'https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg';
-            for(var i=0;i<10;i++)
+            for(var i=0;i<5;i++)
             {
                 console.log(articlrList[i].farm);
                 var farmid = articlrList[i].farm;
@@ -809,7 +809,7 @@ var ViewModel = function(){
  //Wikipedia AJAX request 
     var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + location.marker.name + '&format=json&callback=wikiCallback';
     // var contentString = '<div id="exo" class="jumbotron"><h3>'+ location.marker.name+'</h3><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
-     contentString += '<div id="exo" class="jumbotron"><h3>'+ location.marker.name+'</h3><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
+     contentString += '<div id="exo" class="jumbotron"><h4>'+ location.marker.name+'</h4><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
      contentString += "<img src='" + window.url + "'\><br><br>";
     var wikiRequestTimeout = setTimeout(function(){
         contentString = "failed to get wikipedia resources";
@@ -829,7 +829,7 @@ var ViewModel = function(){
             if (articleStr === "") {
                 articleStr = "Read more on Wikipedia.";
             }
-            contentString += '<a class="btn btn-info btn-sm" href="'+url+'">read more from <i class="fa fa-wikipedia-w" aria-hidden="true"></i></a>&nbsp;&nbsp;<a class="btn btn-success btn-sm" href="'+ location.marker.directionsUrl+'">Visit</a></div>';
+            contentString += '<a class="btn btn-info btn-sm" href="'+url+'"><i class="fa fa-wikipedia-w" aria-hidden="true"></i>  Wikipedia</a>&nbsp;&nbsp;<a class="btn btn-success btn-sm" href="'+ location.marker.directionsUrl+'"><i class="fa fa-map-pin" aria-hidden="true"></i>  Visit</a></div>';
 
             infowindow.setContent(contentString);
             infowindow.open(map, location.marker);
@@ -848,7 +848,7 @@ var map;
 var marker;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
+        zoom: 5,
         center: { lat:37.0902, lng:-95.4300083}, 
     });
     ko.applyBindings(new ViewModel());

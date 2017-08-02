@@ -1,5 +1,5 @@
 #map {
-    height: 700px;
+    height: 900px;
     width: 100%;
 }
 
@@ -8,10 +8,10 @@ h2, h3 {
 }
 
 .nav{
-    max-height: 110px;
+    max-height: 200px;
     /*overflow-y:auto; */
     font-size: 1em;
-    overflow-y: scroll;
+    overflow-x: scroll;
 }
 
 #exo{
@@ -24,7 +24,7 @@ h2, h3 {
 }
 
 p{
-    font-size: 1.4em;
+    font-size: 1em;
 }
 
 html { 
@@ -36,3 +36,17 @@ body {
     margin: 0; 
     padding: 0 
     }
+
+    img{
+        width: 340px;
+        height: auto;
+    }
+
+    #wrapper { position: relative; }
+   #over_map { position: absolute; top: 5px; right: 45px; z-index: 99; border-color:red;     border-style: solid;
+    border-width: 4px; }
+
+    select {
+    width: 100%;
+    max-width: 50px;
+}

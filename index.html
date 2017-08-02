@@ -28,6 +28,11 @@
               <li><a href="mailto:cocacolabear.la@gmail.com" class="text-white">Email me</a></li>
               
             </ul>
+
+            <ul data-bind="foreach: locationList" class="nav" id="WalterTurncoat">
+             
+              <a href="#" class="list-group-item list-group-item-action" data-bind="text: name, click: $parent.clickListShowMarker"></a>
+        
             
           </div>
         </div>
@@ -45,21 +50,27 @@
 
 <!--test for nav bar end-->
 
-
+<div id="wrapper">
     <div class="container-fluid ">
 
-      <!--<div class="row">-->
-          <div class="col-sm-12">
-            <select id="exo" class="custom-select col-md-12" data-bind="options: locationList, value:selectedLocation, optionsCaption: 'SELECT...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>
+      <div class="row">
+          <div  id="over_map">
+            <select id="exo" class="custom-select " data-bind="options: locationList, value:selectedLocation, optionsCaption: 'SELECT...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>
 
-            <ul data-bind="foreach: locationList" class="nav" id="WalterTurncoat">
+            <!--<ul data-bind="foreach: locationList" class="nav" id="WalterTurncoat">
              
               <a href="#" class="list-group-item list-group-item-action" data-bind="text: name, click: $parent.clickListShowMarker"></a>
-        
+        -->
     </div>
 
  <div id="map"></div>
-            
+
+</div>
+
+
+
+
+</div>   
           </div>
       </div>
     <!--<div id="pano"></div>-->
