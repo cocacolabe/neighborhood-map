@@ -755,6 +755,7 @@ var ViewModel = function(){
         newLoc.marker.addListener('click', function(){
             self.clickListShowMarker(newLoc);
             newLoc.marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
+       
         });
 
         // Push Location to locationList
@@ -769,6 +770,7 @@ var ViewModel = function(){
 
     this.clickListShowMarker = function(location) {
         location.marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
+      
 
 // Flickr API
 
@@ -797,19 +799,16 @@ var ViewModel = function(){
                 var secret = articlrList[i].secret;
                 var url = 'https://farm' + farmid + '.staticflickr.com/' + serverid + '/' + photoid + '_' + secret + '.jpg';
         }
-        // var url='https://farm'+farmid+'.staticflickr.com/'+serverid+'/'+photoid+'_'+secret+'.jpg';
             window.url = url;
             clearTimeout(flickrRequestTimeout);
     }
 
    });
 
-
-
  //Wikipedia AJAX request 
     var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + location.marker.name + '&format=json&callback=wikiCallback';
     // var contentString = '<div id="exo" class="jumbotron"><h3>'+ location.marker.name+'</h3><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
-     contentString += '<div id="exo" class="jumbotron"><h4>'+ location.marker.name+'</h4><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
+     contentString += '<div class="jumbotron" id="exo"><h4>'+ location.marker.name+'</h4><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
      contentString += "<img src='" + window.url + "'\><br><br>";
     var wikiRequestTimeout = setTimeout(function(){
         contentString = "failed to get wikipedia resources";
