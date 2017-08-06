@@ -1,5 +1,5 @@
 #map {
-    height: 900px;
+   height: 95vh;;
     width: 100%;
 }
 
@@ -38,7 +38,7 @@ body {
     }
 
     img{
-        width: 340px;
+        width: 240px;
         height: auto;
     }
 
@@ -47,6 +47,6 @@ body {
     border-width: 4px; }
 
     select {
-    width: 100%;
-    max-width: 50px;
+
+    width: 150px;
 }
