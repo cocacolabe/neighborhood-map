@@ -145,7 +145,11 @@ var ViewModel = function(){
         newLoc.marker.addListener('click', function(){
             self.clickListShowMarker(newLoc);
             newLoc.marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
+<<<<<<< HEAD
             
+=======
+       
+>>>>>>> fd049d77a6ea03fe009071c7e39ad7a64c0def06
         });
         
 
@@ -180,6 +184,7 @@ var ViewModel = function(){
         success:function(response)
         {
             var articlrList=response.photos.photo;
+<<<<<<< HEAD
                
             var farmid = articlrList[0].farm;
             var serverid = articlrList[0].server;
@@ -187,6 +192,18 @@ var ViewModel = function(){
             var secret = articlrList[0].secret;
             var url = 'https://farm' + farmid + '.staticflickr.com/' + serverid + '/' + photoid + '_' + secret + '.jpg';   
   
+=======
+                // var url = 'https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg';
+            for(var i=0;i<5;i++)
+            {
+                console.log(articlrList[i].farm);
+                var farmid = articlrList[i].farm;
+                var serverid = articlrList[i].server;
+                var photoid = articlrList[i].id;
+                var secret = articlrList[i].secret;
+                var url = 'https://farm' + farmid + '.staticflickr.com/' + serverid + '/' + photoid + '_' + secret + '.jpg';
+        }
+>>>>>>> fd049d77a6ea03fe009071c7e39ad7a64c0def06
             window.url = url;
             clearTimeout(flickrRequestTimeout);
     }

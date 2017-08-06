@@ -1,5 +1,9 @@
 #map {
+<<<<<<< HEAD
    height: 95vh;;
+=======
+   height: 92vh;;
+>>>>>>> fd049d77a6ea03fe009071c7e39ad7a64c0def06
     width: 100%;
 }
 
@@ -38,7 +42,11 @@ body {
     }
 
     img{
+<<<<<<< HEAD
         width: 240px;
+=======
+        width: 300px;
+>>>>>>> fd049d77a6ea03fe009071c7e39ad7a64c0def06
         height: auto;
     }
 
