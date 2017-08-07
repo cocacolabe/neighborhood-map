@@ -133,7 +133,7 @@ var ViewModel = function(){
 
     this.selectionChange = function() {
         self.clickListShowMarker(self.selectedLocation());
-        
+
     }
 
     initialLocation.forEach(function(listItem){
@@ -144,14 +144,20 @@ var ViewModel = function(){
         // Add listener to marker
         newLoc.marker.addListener('click', function(){
             self.clickListShowMarker(newLoc);
-            newLoc.marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
-<<<<<<< HEAD
             
-=======
-       
->>>>>>> fd049d77a6ea03fe009071c7e39ad7a64c0def06
+        });
+
+        newLoc.marker.addListener('mouseover', function(){
+            // self.clickListShowMarker(newLoc);
+            newLoc.marker.setIcon('https://www.google.com/mapfiles/marker_yellow.png');
+            
         });
         
+        newLoc.marker.addListener('mouseout', function(){
+            // self.clickListShowMarker(newLoc);
+            newLoc.marker.setIcon('https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png');
+            
+        });
 
         // Push Location to locationList
         self.locationList.push(newLoc);
@@ -164,7 +170,8 @@ var ViewModel = function(){
         });
 
     this.clickListShowMarker = function(location) {
-        location.marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
+        // location.marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
+    
       
 
 // Flickr API
@@ -175,7 +182,7 @@ var ViewModel = function(){
 
         var flickrRequestTimeout = setTimeout(function(){
             contentString = "failed to get Flickr resources";
-    }, 10000);
+    }, 1000);
 
     $.ajax({
         url: flickrUrl,
@@ -184,7 +191,6 @@ var ViewModel = function(){
         success:function(response)
         {
             var articlrList=response.photos.photo;
-<<<<<<< HEAD
                
             var farmid = articlrList[0].farm;
             var serverid = articlrList[0].server;
@@ -192,18 +198,6 @@ var ViewModel = function(){
             var secret = articlrList[0].secret;
             var url = 'https://farm' + farmid + '.staticflickr.com/' + serverid + '/' + photoid + '_' + secret + '.jpg';   
   
-=======
-                // var url = 'https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg';
-            for(var i=0;i<5;i++)
-            {
-                console.log(articlrList[i].farm);
-                var farmid = articlrList[i].farm;
-                var serverid = articlrList[i].server;
-                var photoid = articlrList[i].id;
-                var secret = articlrList[i].secret;
-                var url = 'https://farm' + farmid + '.staticflickr.com/' + serverid + '/' + photoid + '_' + secret + '.jpg';
-        }
->>>>>>> fd049d77a6ea03fe009071c7e39ad7a64c0def06
             window.url = url;
             clearTimeout(flickrRequestTimeout);
     }
@@ -213,7 +207,7 @@ var ViewModel = function(){
  //Wikipedia AJAX request 
     var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + location.marker.name + '&format=json&callback=wikiCallback';
     // var contentString = '<div id="exo" class="jumbotron"><h3>'+ location.marker.name+'</h3><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
-     contentString += '<div class="jumbotron" id="exo"><h4>'+ location.marker.name+'</h4><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
+     contentString += '<div id="exo"><h4>'+ location.marker.name+'</h4><b>State:  '+ location.marker.states+'</b><br><p>'+ location.marker.description+'</p><br>' ;
      contentString += "<img src='" + window.url + "'\><br><br>";
     
     var wikiRequestTimeout = setTimeout(function(){
@@ -258,4 +252,6 @@ function initMap() {
         center: {lat:38.8888816, lng:-77.0106309},
     });
     ko.applyBindings(new ViewModel());
+
+    
 }
