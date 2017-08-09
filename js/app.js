@@ -133,7 +133,7 @@ var ViewModel = function(){
 
     this.selectionChange = function() {
         self.clickListShowMarker(self.selectedLocation());
-
+        
     }
 
     initialLocation.forEach(function(listItem){
@@ -143,27 +143,37 @@ var ViewModel = function(){
 
         // Add listener to marker
         newLoc.marker.addListener('click', function(){
-            self.clickListShowMarker(newLoc);
             
+            self.clickListShowMarker(newLoc);
+            toggleBounce(this);
         });
 
-        newLoc.marker.addListener('mouseover', function(){
-            // self.clickListShowMarker(newLoc);
-            newLoc.marker.setIcon('https://www.google.com/mapfiles/marker_yellow.png');
-            
-        });
+        // newLoc.marker.addListener('mouseover', function(){
+        //     // self.clickListShowMarker(newLoc);
+        //     toggleBounce(this);
+        // });
         
-        newLoc.marker.addListener('mouseout', function(){
-            // self.clickListShowMarker(newLoc);
-            newLoc.marker.setIcon('https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png');
+        // newLoc.marker.addListener('mouseout', function(){
+        //     // self.clickListShowMarker(newLoc);
+        //     toggleBounce(this);
             
-        });
+        // });
 
         // Push Location to locationList
         self.locationList.push(newLoc);
         
     });
-
+       
+        function toggleBounce(marker) {
+            if (marker.getAnimation() !== null) {
+              marker.setAnimation(null);
+            } else {
+              marker.setAnimation(google.maps.Animation.BOUNCE);
+              setTimeout(function(){
+                 marker.setAnimation(null);
+              }, 2000);
+            }
+        }
     
     var infowindow = new google.maps.InfoWindow({
         maxWidth: 400,
