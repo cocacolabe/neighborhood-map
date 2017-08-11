@@ -131,7 +131,7 @@ var ViewModel = function(){
     //for the dropdown list
     this.selectedLocation = ko.observable();
 
-    this.selectionChange = function() {
+    this.selectionChange = function(marker) {
         self.clickListShowMarker(self.selectedLocation());
         
     }
@@ -143,21 +143,10 @@ var ViewModel = function(){
 
         // Add listener to marker
         newLoc.marker.addListener('click', function(){
-            
-            self.clickListShowMarker(newLoc);
             toggleBounce(this);
-        });
-
-        // newLoc.marker.addListener('mouseover', function(){
-        //     // self.clickListShowMarker(newLoc);
-        //     toggleBounce(this);
-        // });
-        
-        // newLoc.marker.addListener('mouseout', function(){
-        //     // self.clickListShowMarker(newLoc);
-        //     toggleBounce(this);
+            self.clickListShowMarker(newLoc);
             
-        // });
+        });
 
         // Push Location to locationList
         self.locationList.push(newLoc);
@@ -179,9 +168,7 @@ var ViewModel = function(){
         maxWidth: 400,
         });
 
-    this.clickListShowMarker = function(location) {
-        // location.marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
-    
+    this.clickListShowMarker = function(location) { 
       
 
 // Flickr API
