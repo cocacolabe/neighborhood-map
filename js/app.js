@@ -104,7 +104,7 @@
             "name": "Thomas Jefferson Memorial"
         },
 
-    ]
+    ];
 // data end
 
 //filter
@@ -139,7 +139,7 @@ var Location = function(data){
         states: data.states,
         animation: google.maps.Animation.DROP,
     });
-}
+};
 
 
 
@@ -153,7 +153,7 @@ var ViewModel = function(){
     this.selectionChange = function(marker) {
         self.clickListShowMarker(self.selectedLocation());
         
-    }
+    };
 
     initialLocation.forEach(function(listItem){
         
@@ -254,10 +254,9 @@ var ViewModel = function(){
         }
 
     });
+    };
 
-    }
-
-}
+};
 
 // Initialize and setup google map
 var map;
@@ -271,3 +270,4 @@ function initMap() {
 
     
 }
+
