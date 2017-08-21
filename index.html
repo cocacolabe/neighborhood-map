@@ -30,11 +30,11 @@
             </ul>
           </div>
             <div class="col-sm-6 py-4 text-white">
-            <ul data-bind="foreach: locationList" class="nav" id="WalterTurncoat">
+            <!--<ul data-bind="foreach: locationList" class="nav" id="myUL">
              
-              <a href="#" class="list-group-item list-group-item-action" data-bind="text: name, click: $parent.clickListShowMarker"></a>
+              <li><a href="#" class="list-group-item list-group-item-action" data-bind="text: name, click: $parent.clickListShowMarker"></a></li>
         
-            
+            </ul>-->
           </div>
         </div>
       </div>
@@ -56,7 +56,15 @@
 
       <div class="row">
           <div  id="over_map">
-            <select id="exo" class="custom-select " data-bind="options: locationList, value:selectedLocation, optionsCaption: 'SELECT...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+            <div>
+            <ul data-bind="foreach: locationList"  id="myUL">
+             
+              <li><a href="#" class="list-group-item list-group-item-action" data-bind="text: name, click: $parent.clickListShowMarker"></a></li>
+        
+            </ul>
+            </div>
+            <!--<select id="exo" class="custom-select " data-bind="options: locationList, value:selectedLocation, optionsCaption: 'SELECT...', optionsText: 'name', event: {change: selectionChange}" class="dropdown"></select>-->
 
     </div>
 
