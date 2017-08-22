@@ -43,10 +43,30 @@ body {
     }
 
     #wrapper { position: relative; }
-   #over_map { position: absolute; top: 5px; right: 45px; z-index: 99; border-color:red;     border-style: solid;
+   #over_map { position: absolute; top: 5px; right: 45px; z-index: 20; border-color:red;     border-style: solid;
     border-width: 4px; }
 
     select {
 
     width: 150px;
+}
+
+ul{
+    list-style-type: none;
+    font-size: 1em;
+    height:200px; 
+    width:50%;
+    /*overflow:hidden; */
+    overflow-y:scroll;
+}
+
+#myInput {
+    float: right;
+    height: 50px;
+    width: 216px;
+}
+
+.list-group-item{
+    
+    opacity: 0.8;
 }
