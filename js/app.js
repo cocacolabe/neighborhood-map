@@ -127,23 +127,6 @@ var initialLocation = [
 ];
 // data end
 
-// //filter
-// function myFunction() {
-//     var input, filter, ul, li, a, i;
-//     input = document.getElementById("myInput");
-//     filter = input.value.toUpperCase();
-//     ul = document.getElementById("myUL");
-//     li = ul.getElementsByTagName("li");
-//     for (i = 0; i < li.length; i++) {
-//         a = li[i].getElementsByTagName("a")[0];
-//         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-//             li[i].style.display = "";
-//         } else {
-//             li[i].style.display = "none";
-//         }
-//     }
-// }
-
 // Model: Blueprint for KO Location objects
 var Location = function(data) {
   this.name = ko.observable(data.name);
@@ -195,14 +178,15 @@ var ViewModel = function() {
     }
   }
 
+// filter
+
   this.filter = ko.observable("");
   this.filtered = ko.computed(() => {
     let filter = this.filter().toLowerCase();
     if (!filter) {
-      // Set all markers visible when input field is empty
+      // Set all markers visible as defult
       this.locationList().forEach(location => {
         location.marker.setVisible(true);
-        // locationList.setVisible(true);
       });
       return this.locationList();
     } else {
@@ -213,7 +197,6 @@ var ViewModel = function() {
             .toLowerCase()
             .indexOf(filter) >= 0;
         location.marker.setVisible(result);
-        // locationList.setVisible(result);
         return result;
       });
     }
@@ -226,7 +209,6 @@ var ViewModel = function() {
   this.clickListShowMarker = function(location) {
     // Flickr API
 
-    //  var $body = $('body');
     var flickrUrl =
       "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=c9dc37eeb28fc5b376222e989a04c75e&text=" +
       location.marker.name +
@@ -308,14 +290,10 @@ var ViewModel = function() {
         infowindow.setContent(contentString);
         map.setCenter(location.position);
         infowindow.open(map, location.marker);
-        // map.setZoom(14);
+ 
         clearTimeout(wikiRequestTimeout);
       }
     });
-
-
-
-
 
       }
     });
