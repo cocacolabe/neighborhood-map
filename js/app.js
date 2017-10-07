@@ -158,7 +158,7 @@ var ViewModel = function() {
 
         // Add listener to marker
         newLoc.marker.addListener("click", function() {
-            toggleBounce(this);
+            // toggleBounce(this);
             self.clickListShowMarker(newLoc);
         });
 
@@ -166,7 +166,7 @@ var ViewModel = function() {
         self.locationList.push(newLoc);
     });
 
-    function toggleBounce(marker) {
+    this.toggleBounce = function(marker) {
         if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
         } else {
@@ -206,8 +206,11 @@ var ViewModel = function() {
     });
 
     this.clickListShowMarker = function(location) {
+        // Marker Bounce
+        self.toggleBounce(location.marker);
+        
         // Flickr API
-
+        
         var flickrUrl =
             "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=c9dc37eeb28fc5b376222e989a04c75e&text=" +
             location.marker.name +
@@ -215,7 +218,7 @@ var ViewModel = function() {
         var contentString = "";
 
         var flickrRequestTimeout = setTimeout(function() {
-            contentString = "failed to get Flickr resources";
+            window.alert("flickr failed");
         }, 1000);
 
         $.ajax({
@@ -262,8 +265,8 @@ var ViewModel = function() {
                 contentString += "<img src='" + window.url + "'><br><br>";
 
                 var wikiRequestTimeout = setTimeout(function() {
-                    contentString = "failed to get wikipedia resources";
-                }, 10000);
+                    window.alert("failed to get wikipedia resources"); 
+                }, 1000);
 
                 console.log(contentString);
                 $.ajax({
@@ -303,6 +306,10 @@ var ViewModel = function() {
 // Initialize and setup google map
 var map;
 var marker;
+
+function googleMapLoadError(){
+  window.alert("failed to get Google Maps");
+}
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
