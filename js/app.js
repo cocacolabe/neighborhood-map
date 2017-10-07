@@ -175,7 +175,7 @@ var ViewModel = function() {
                 marker.setAnimation(null);
             }, 2000);
         }
-    }
+    };
 
     // filter
 
